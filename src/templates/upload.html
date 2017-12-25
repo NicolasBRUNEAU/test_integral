@@ -1,0 +1,117 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Upload
+{% endblock %}
+
+{% block content %}
+
+    <h2>page de upload des fichiers</h2>
+    <div class="upload_file">
+        <p>
+            La génération des conformations entre le récepteur et le ligand.
+            Il faut renseigner pour cela les deux fichiers PDB initiaux correspondant à la structure du récepteur et du ligand.
+        </p><br/>
+
+        {% with messages = get_flashed_messages(category_filter=["erreur"]) %}
+        {% if messages %}
+        <ul style="list-style:none; color: red; font-weight: 700;">
+            {% for m in messages %}
+                <li>{{ m }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <br/>
+
+        <form action="http://localhost:5000/run" method="POST" enctype="multipart/form-data">
+            <ul>
+                <li>
+                   <p>
+                        PDB du récepteur :
+                    </p>
+                    <input type="file" name="receptor" />
+                </li><br/>
+
+                <li>
+                    <p>
+                        PDB du ligand :
+                    </p>
+                    <input type="file" name="ligand" />
+                </li><br/>
+
+                <li>
+                    <p>
+                        Sélectionner la taille de la grille:<br/>
+                        Attention, plus la taille de la grille est grande, plus le temps de calcul est important!
+                    </p>
+                    <select name="tailleGrille">
+                        <option>64</option>
+                        <option selected="selected">128</option>
+                        <option>256</option>
+                        <option>512</option>
+                        <option>1024</option>
+                        <option>2048</option>
+                    </select>
+                <li/><br/>
+
+                <li>
+                    <p>
+                        Rayon définissant les noeuds à l'intérieur de la protéine:
+                    </p>
+                    <input type="text" name="RIntProt" value=1.1 />
+                </li><br/>
+
+                <li>
+                    <p>
+                        Rayon définissant les noeuds la surface de la protéine
+                    </p>
+                    <input type="text" name="RIntSurf" value=1.1 />
+                </li><br/>
+
+                <li>
+                    <p>
+                        Rho, valeur associé aux noeuds à l'intérieur du récepteur
+                    </p>
+                    <input type="text" name="Rho" value=-15 />
+                </li><br/>
+
+                <li>
+                    <p>
+                        Delta, valeur associé aux noeuds à l'intérieur du ligand
+                    </p>
+                    <input type="text" name="Delta" value=1 />
+                </li><br/>
+
+                <li>
+                    <p>
+                        Sélectionner le pas de rotation du ligand (en degrée):<br/>
+                        Attention, plus le pas est petit, plus le temps de calcul est important!
+                    </p>
+                    <select name="pasGrille">
+                        <option>9</option>
+                        <option>10</option>
+                        <option>12</option>
+                        <option selected="selected">15</option>
+                        <option>18</option>
+                        <option>20</option>
+                        <option>30</option>
+                        <option>36</option>
+                        <option>45</option>
+                        <option>60</option>
+                        <option>90</option>
+                    </select>
+                </li><br/>
+
+                <li class="click">
+                    <div class="docker">
+                        <button type="submit" class="bouton" name="docker">Docker !</button>
+                    </div>
+                </li>
+            </ul>
+            
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+SAMPLING EQUIPE 2
+
+Ce programme permet de générer un nombre de conformations de docking d'un ligand autour du récepteur
+DockHunter : Lauriane PAQUET, Pierre GHOSSOUB, Matthias ELUARD, Nicolas VENEDITTAN, Nicolas BRUNEAU
+		Groupe 2 - MeetU 2017/2018 - Paris VII - Denis Diderot
+
+
+/!\  LES FICHIERS PDB DES COMPLEXES PEUVENT ETRE OBTENUS MAIS NE SONT PAS TRES PERTINENTS, DEBUGGAGE EN COURS  /!\
+
+
+Notre stratégie est de calculer en parallèle (multiprocessing), différents docking entre recepteur / ligand dûs à des variations de rotation du ligand.
+Le programme repose sur le principe des transformés de Fourier (FFT) afin de détérminer le meilleur positionnement du ligand sur le récepteur.
+Nous privilégions une technique par FFT et multiprocessing pour un gain de vitesse en temps de calculs par rapport à des méthodes plus précise.
+
+Le programme (main.py) doit être executé depuis le dossier '2017-2018_Equipe2'.
+Dans le dossier 'results/', on obtient les différents fichiers pdb des complexes recepteur + ligand, pour les variations de rotation du ligand.
+
+Le programme est compatible en Python3.
+Les modules nécessaires pour exécuter correctement le programme :
+    - numpy
+    - multiprocessing
+    - time
+    - copy
+    - os
+    - sys
+    - logging
+    - math
+    - Une représentation graphique de la corrélation de surface est possible avec matplotlib.
+
+Pour afficher le 'help' du programme:
+$ python3 src/main.py --help
+
+Exemple de commande pour exécuter le programme depuis le dossier '2017-2018_Equipe2' :
+$ python3 src/main.py --rec data/recepteur.pdb --lig data/ligand.pdb -s 128 -r 1.1 -t 1.1 -p -15 -d 1 --pas 12
+
+Le programme a besoin de 8 paramètres pour fonctionner :
+    - le lien vers le fichier pdb du récepteur (--rec)
+    - le lien vers le fichier pdb du ligand (--lig)
+    - on précise la taille de la grille (-s)
+    - Rayon définissant les noeuds à l'intérieur de la protéine (-r)
+    - Rayon définissant les noeuds à la surface de la protéine (-t)
+    - Rho, valeur associé aux noeuds à l'intérieur du récepteur (-p)
+    - delta, valeur associé aux noeuds à l'intérieur du ligand (-d)
+    - Pas de rotation en degré (--pas)
+
+Le programme est organisé selon les différents fichiers :
+    - 'Main.py' : corps principal du programme
+    - 'Molecule.py' : classe correspondant à l'import d'une protéine, à son écriture, et son traitement
+    - 'fastFourierTransform.py' : ensemble de fonction regroupant les calculs de la transformée de fourier (conjugué, transformée, inverse) et ses représentations graphiques.
+    - 'tool.py' : Fonctions diverses (récupération et traitement des arguments, affichage diverses...)
+

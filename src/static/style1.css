@@ -1,0 +1,117 @@
+/* RESET DES VALEURS A 0 */
+*{margin:0px;padding:0px;text-decoration:none;}
+em{font-style:normal;}
+strong{font-weight:normal;}
+
+
+/* BODY */
+body{
+	background-color:#c6edff;
+}
+
+
+/* ONGLET NAVIGATION */
+nav{
+	background-color: #c6edff;
+	float:left;
+	height:100vh;
+	width:150px;
+	margin:0;
+	padding:0;
+}
+
+nav ul{
+	margin:auto;
+	padding:auto;
+	height:40px;
+}
+
+nav ul li{
+	margin:auto;
+	padding:8px;
+	text-align:center;
+	list-style:none;
+}
+
+nav ul li a{
+	margin:auto;
+	padding:auto;
+	color:grey;
+	font-size:1.2em;
+	font-weight:600;
+	display: block;
+}
+
+nav ul li:hover a{
+	color:grey;
+	font-size:1.4em;
+	text-shadow:0 0 2px orangered;
+	font-weight:500;
+	display: block;
+}
+
+
+/* HEADER DU SITE */
+header{
+	margin:auto;
+	padding:10px;
+}
+
+header p.team{
+	text-align:center;
+	color:orangered;
+	font-size:2em;
+	font-weight:700;
+	font-size:40px;
+	text-shadow:0 0 2px #000000;
+}
+
+header:hover p.team{
+	text-align:center;
+	color:white;
+	font-weight:700;
+	font-size:40px;
+	text-shadow:0 0 2px #000000;
+}
+
+footer{
+	text-align:center;
+	font-size:12px;
+}
+
+/* CONTAINER */
+div.content{
+	background-color: white;
+	margin:0;
+	padding:0;
+	width:600;
+}
+
+/* page UPLOAD */
+div.upload_file{
+	padding: 20px;
+}
+
+div.upload_file form {
+	padding-left: 8%;
+}
+
+div.upload_file form ul li{
+	list-style:none;
+}
+
+div.upload_file form li.click{
+	text-align:center;
+	padding:10px;
+	margin:auto;
+}
+
+div.upload_file form li.click div.docker button.bouton{
+	text-align:center;
+	background-color: #c6edff;
+	width: 200px;
+	height:50px;
+	margin:auto;
+	padding:auto;
+}
+
